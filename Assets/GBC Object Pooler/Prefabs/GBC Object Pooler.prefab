@@ -51,12 +51,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0abdaac855f99644ca84fd22867ae415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pools:
-  - PooledObject: {fileID: 1981896255088714, guid: bb174e9dc91a0c3458c96badc73db337,
-      type: 2}
-    PooledAmount: 5
-    ObjectName: Cube
-  - PooledObject: {fileID: 1132788469743580, guid: 4f69cfcbd18960b4c82d840135e4c400,
-      type: 2}
-    PooledAmount: 5
-    ObjectName: Sphere
+  Pools: []

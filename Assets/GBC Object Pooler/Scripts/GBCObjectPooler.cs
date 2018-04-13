@@ -34,14 +34,14 @@ public class GBCObjectPooler : MonoBehaviour {
 
         foreach (Pool pool in Pools) {
             // Create a game object for each pool
-            // Keeps it clean
+            // Keeps it clean in the Inspector
             GameObject go = new GameObject(pool.PoolName + " Pool");
             go.transform.SetParent(transform, false);
 
             // Create an object pool queue
             Queue<GameObject> objectPoolQueue = new Queue<GameObject>();
 
-            // Populate
+            // Populate the pool with the defined prefab
             for (int i = 0; i < pool.PooledAmount; i++) {
                 GameObject pooledObject = (GameObject)Instantiate(pool.PooledObject, Vector3.zero, Quaternion.identity, go.transform);
                 pooledObject.name = pool.PoolName + " (Inactive)";
@@ -49,6 +49,7 @@ public class GBCObjectPooler : MonoBehaviour {
                 objectPoolQueue.Enqueue(pooledObject);
             }
 
+            // Add pool to dictionary
             poolDictionary.Add(pool.PoolName, objectPoolQueue);
         }
 	}

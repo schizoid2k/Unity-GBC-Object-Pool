@@ -27,7 +27,7 @@ The script also creates an empty GameObject for every pool and the instantiated 
 This will return an item from the pool specified.  
 If the pool does not exist, or if there are no more items in the pool, _null_ is returned.
 
-### ReturnToPool(GameObject object)  
+### ReturnToPool(GameObject object, string poolName)  
 This will place the specified item back into the correct pool, and will disable it.
 
 ### ItemsInPool(string poolName)  
