@@ -60,11 +60,16 @@ public class GBCObjectPooler : MonoBehaviour {
     /// <param name="PoolName">Name of Pool</param>
     /// <returns>An unused object or null if there is none available</returns>
     public GameObject GetPooledObject(string PoolName) {
-        if (!poolDictionary.ContainsKey(PoolName)) return null;
-        if (poolDictionary[PoolName].Count <= 0) return null;
-        GameObject go = poolDictionary[PoolName].Dequeue();
-        go.name = PoolName;
-        return go;
+        Queue<GameObject> pool;
+
+        if (poolDictionary.TryGetValue(PoolName, out pool) && pool.Count > 0) {
+            GameObject go = pool.Dequeue();
+            go.name = PoolName;
+            return go;
+        }
+        else {
+            return null;
+        }
     }
 
     /// <summary>

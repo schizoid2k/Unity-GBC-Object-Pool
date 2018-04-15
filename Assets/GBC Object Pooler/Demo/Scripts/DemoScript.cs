@@ -28,8 +28,10 @@ public class DemoScript : MonoBehaviour {
             }
             else {
                 GameObject go = GBCObjectPooler.Instance.GetPooledObject("Cube");
-                go.transform.position = new Vector3(pos.x, pos.y, Random.Range(0f, -1f));
-                go.SetActive(true);
+                if (go != null) {
+                    go.transform.position = new Vector3(pos.x, pos.y, Random.Range(0f, -1f));
+                    go.SetActive(true);
+                }
             }
 
             Debug.Log("Cubes Left in Pool: " + GBCObjectPooler.Instance.ItemsInPool("Cube") +
@@ -51,8 +53,10 @@ public class DemoScript : MonoBehaviour {
             }
             else {
                 GameObject go = GBCObjectPooler.Instance.GetPooledObject("Sphere");
-                go.transform.position = new Vector3(pos.x, pos.y, Random.Range(0f, -1f));
-                go.SetActive(true);
+                if (go != null) {
+                    go.transform.position = new Vector3(pos.x, pos.y, Random.Range(0f, -1f));
+                    go.SetActive(true);
+                }
             }
 
             Debug.Log("Cubes Left in Pool: " + GBCObjectPooler.Instance.ItemsInPool("Cube") +
