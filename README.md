@@ -4,10 +4,10 @@
 
 GBC Object Pool is a free Unity asset that allows you to use object pooling in your games. Object Pooling creates game objects prior to use, thereby eliminating the lag from repeated creation and destruction of objects over and over again.  Any prefab can be pooled.
 
-You are given permission to use this library in your Unity projects.  I am going to add functionality as I need, and if you would like to contribute, please do so!  Keep in mind that I would like to keep this library somewhat simple, as there are several "more complex" poolers in the Asset Store.
+You are given permission to use this library in your Unity projects.  I am going to add functionality as I need, and if you would like to contribute, please do so!  I look forward to your improvements.  Keep in mind that I would like to keep this library somewhat simple, as there are several "more complex" poolers in the Asset Store, but there are still some nice features that can be added.
 
 ## To Use This Asset
-1. Download and import this asset into your Unity Project
+1. Download the UnityPackage from the current-build folder and import this asset into your Unity Project
 2. Drag the GBC Object Pooler prefab into your Unity scene
 3. Click on the prefab in your scene, and in the Inspector you will notice a script named GBCObjectPooler.
 4. Enter the number of pools you wish to create.
