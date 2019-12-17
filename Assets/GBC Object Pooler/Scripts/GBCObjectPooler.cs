@@ -1,11 +1,15 @@
 ﻿/*
  * GBC Object Pool for Unity
- * Originally Developed by John Schumacher
- * http://gamesbycandlelight.com
+ * Developed by John Schumacher 2019
+ * http:// gamesbycandlelight.com
+ * https://github.com/schizoid2k/Unity-GBC-Object-Pool
+ * @CandlelightGame (Twitter)
  * 
+ * The use of the GBCObjectPooler Unity plugin is free.  This is a simple, yet effective,
+ * object pooler library for Unity.  I have open-sourced the development of this
+ * library, and I encourage you to share your updates with the community.
 */
 
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
