@@ -1,5 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿/*
+ * GBC Object Pooler - Demo Scene
+ * Developed by John Schumacher 2019
+ * http:// gamesbycandlelight.com
+ * https://github.com/schizoid2k/Unity-GBC-Object-Pool
+ * @CandlelightGame (Twitter)
+ * 
+ * The use of the GBCObjectPooler Unity asset is free.  This is a simple, yet effective,
+ * object pooler library for Unity.  I have open-sourced the development of this
+ * library, and I encourage you to share your updates with the community.
+ * 
+ * This scene demonstrates pulling and pushing games objects to their respective pools.
+*/
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -64,7 +76,5 @@ public class DemoScript : MonoBehaviour {
 
             SpheresText.text = "Spheres In Pool: " + GBCObjectPooler.Instance.ItemsInPool("Sphere");
         }
-
-
     }
 }
