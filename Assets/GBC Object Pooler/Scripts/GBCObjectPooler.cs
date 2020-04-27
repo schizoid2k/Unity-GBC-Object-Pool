@@ -28,8 +28,12 @@ public class GBCObjectPooler : MonoBehaviour {
     private Dictionary<string, Queue<GameObject>> poolDictionary;
 
     private void Awake() {
-        if (Instance != null && Instance != this) Destroy(gameObject);
-        Instance = this;
+        if (Instance != null && Instance != this) {
+            Destroy(gameObject);
+        }
+        else {
+            Instance = this;
+        }
     }
 
     // Use this for initialization
