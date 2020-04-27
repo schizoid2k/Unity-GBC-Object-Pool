@@ -42,3 +42,5 @@ If you would like to contribute, please feel free to clone and add your updates!
 1.0 13-Apr-2018 Initial Upload.
 
 2.0 16-Dec-2019 Added Editor scripts for easier use.
+
+2.1 27-Apr-2020 Fixed Singleton code in the Awake method
