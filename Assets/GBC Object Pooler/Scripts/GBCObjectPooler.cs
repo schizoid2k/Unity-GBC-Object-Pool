@@ -16,14 +16,14 @@ using UnityEngine;
 public class GBCObjectPooler : MonoBehaviour {
 
     [System.Serializable]
-    public class Pool {
+    public class PoolItem {
         public GameObject PooledObject;
         public int PooledAmount;
         public string PoolName;
     }
 
     public static GBCObjectPooler Instance;
-    public List<Pool> Pools;
+    public List<PoolItem> Pools;
 
     private Dictionary<string, Queue<GameObject>> poolDictionary;
 
@@ -40,7 +40,7 @@ public class GBCObjectPooler : MonoBehaviour {
     void Start () {
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
-        foreach (Pool pool in Pools) {
+        foreach (PoolItem pool in Pools) {
             // Create a game object for each pool
             // Keeps it clean in the Inspector
             GameObject go = new GameObject(pool.PoolName + " Pool");

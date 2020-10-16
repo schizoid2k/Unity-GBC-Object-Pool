@@ -10,8 +10,11 @@
  * library, and I encourage you to share your updates with the community.
 */
 
+using System;
+using System.IO;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.SceneManagement;
 
 [CustomEditor(typeof(GBCObjectPooler))]
 
@@ -48,10 +51,18 @@ public class GBCObjectPoolerEditor : Editor
 
         EditorGUILayout.Space();
 
+        GUILayout.BeginHorizontal();
+
         // Clicking 'New' button will insert a new pool at the top of the list
-        if (GUILayout.Button("Add New Object Pool")) {
-            gbcObjectPooler.Pools.Insert(0, new GBCObjectPooler.Pool());
+        if (GUILayout.Button("Add New Object Pool", GUILayout.Height(25))) {
+            gbcObjectPooler.Pools.Insert(0, new GBCObjectPooler.PoolItem());
         }
+
+        if (GUILayout.Button("Create Constants File", GUILayout.Height(25))) {
+            CreateConstants();
+        }
+
+        GUILayout.EndHorizontal();
 
         EditorGUILayout.Space();
         DrawUILine(Color.gray, 2, 10);
@@ -94,5 +105,45 @@ public class GBCObjectPoolerEditor : Editor
         r.x -= 2;
         r.width += 6;
         EditorGUI.DrawRect(r, color);
+    }
+
+    private void CreateConstants() {
+        string currentSceneName = SceneManager.GetActiveScene().name.Replace(" ", String.Empty);
+        string headerFileLocation = Directory.GetCurrentDirectory() + "\\Assets\\GBC Object Pooler\\Editor\\Templates\\header.txt";
+        string constantsFileName = "GBCOP_" + currentSceneName + "_Constants.cs";
+        string generatedFileLocationRelativePath = "Assets\\GBC Object Pooler\\Generated\\";
+        string generatedFileLocationFullPath = Directory.GetCurrentDirectory() + "\\" + generatedFileLocationRelativePath;
+        string constantsFileNameRelativePath = generatedFileLocationRelativePath + constantsFileName;
+        string constantsFileNameFullPath = Directory.GetCurrentDirectory() + "\\" + generatedFileLocationRelativePath + constantsFileName;
+
+        // read the template
+        string headerText = File.ReadAllText(headerFileLocation);
+        headerText = headerText.Replace("__SCENE__", currentSceneName);
+
+        // check if generated folder exists
+        if (!Directory.Exists(generatedFileLocationFullPath)) Directory.CreateDirectory(generatedFileLocationFullPath);
+        
+        // Remove old file, if exists
+        if (File.Exists(constantsFileNameFullPath)) File.Delete(constantsFileNameFullPath);
+
+        // create constants file
+        using (StreamWriter sw = File.CreateText(constantsFileNameFullPath)) {
+            sw.Write(headerText + "\n\n");
+            sw.WriteLine("namespace GBCOP");
+            sw.WriteLine("{");
+            sw.WriteLine("\tpublic static class GBCOP_" + currentSceneName + "_Constants");
+            sw.WriteLine("\t{");
+
+            for (int i = 0; i < listSize; i++) {
+                SerializedProperty MyListRef = poolList.GetArrayElementAtIndex(i);
+                string poolName = MyListRef.FindPropertyRelative("PoolName").stringValue;
+                sw.WriteLine("\t\tpublic static string GBOC_" + currentSceneName + "_" + poolName + "= \"" + poolName + "\";");
+            }
+
+            sw.WriteLine("\t}\n}");
+        }
+
+        AssetDatabase.ImportAsset(constantsFileNameRelativePath);
+        Debug.Log("Constants File " + constantsFileNameRelativePath + " created");
     }
 }
