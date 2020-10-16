@@ -15,18 +15,19 @@ using System.IO;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.SceneManagement;
+using GBCObjectPooler;
 
-[CustomEditor(typeof(GBCObjectPooler))]
+[CustomEditor(typeof(Pooler))]
 
 public class GBCObjectPoolerEditor : Editor
 {
-    private GBCObjectPooler gbcObjectPooler;
+    private Pooler gbcObjectPooler;
     private SerializedObject _target;
     private SerializedProperty poolList;
     private int listSize;
 
     void OnEnable() {
-        gbcObjectPooler = (GBCObjectPooler)target;
+        gbcObjectPooler = (Pooler)target;
         _target = new SerializedObject(gbcObjectPooler);
         poolList = _target.FindProperty("Pools");
     }
@@ -55,7 +56,7 @@ public class GBCObjectPoolerEditor : Editor
 
         // Clicking 'New' button will insert a new pool at the top of the list
         if (GUILayout.Button("Add New Object Pool", GUILayout.Height(25))) {
-            gbcObjectPooler.Pools.Insert(0, new GBCObjectPooler.PoolItem());
+            gbcObjectPooler.Pools.Insert(0, new Pooler.PoolItem());
         }
 
         if (GUILayout.Button("Create Constants File", GUILayout.Height(25))) {
@@ -129,7 +130,7 @@ public class GBCObjectPoolerEditor : Editor
         // create constants file
         using (StreamWriter sw = File.CreateText(constantsFileNameFullPath)) {
             sw.Write(headerText + "\n\n");
-            sw.WriteLine("namespace GBCOP");
+            sw.WriteLine("namespace GBCObjectPooler");
             sw.WriteLine("{");
             sw.WriteLine("\tpublic static class GBCOP_" + currentSceneName + "_Constants");
             sw.WriteLine("\t{");

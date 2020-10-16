@@ -13,6 +13,8 @@ You are given permission to use this library in your Unity projects.  I am going
 3. Click the "Add Pool" button to add a new pool, a new empty pool will be created.
 5. For each pool, drag in a prefab, enter the number of items you wish to create in the pool, and the name of the pooled items.
 6. To delete a pool, click the associated delete button for the pool you wish to remove.
+7. To create a file containing your constants, click on the "Create Constants File" button. This will create a constants file for the current scene.
+8. In your code files, be sure to add the "using GBCObjectPooler" statement in order to call the appropriate functions.
 
 ## How It Works
 
@@ -21,6 +23,11 @@ When the scene starts, the script will loop through the array of pool items, and
 Behind the scenes, a Queue is created for each object pool, and game objects are instantiated and placed in the queue.  The queue is then added to a Dictionary.
 
 The script also creates an empty GameObject for every pool and the instantiated objects are children of that game object.  I like doing this because it is looks cleaner in the Inspector, and it is also easier to see what is going on during debugging.
+
+## Using Constants
+Using a constant files will allow you to pick a value from your editor's autocompletion drop down feature.  Constants will also help prevent typeos when entering string values.
+
+Since there can be mulitple scenes with the same pool name (for example "Bullets"), you generate a constants file for each scene.  When you click on "Create Constants File", a file will be created and will contain the name of the current scene.  All constant files, as well as the pooler library, is included in the GBCObjectPooler namespace.
 
 ## GBC Object Pool Methods
 
@@ -36,11 +43,13 @@ This will return the number of items still available in the pool specified in *P
 If the pool does not exist, *null* is returned.
 
 ### How About Contributing?
-If you would like to contribute, please feel free to clone and add your updates!  I would love to see what features we can add.
+I am adding features as I need them for my personal projects. Developing Unity Editor plugins is somewhat new to me, so I am sure there is room for improvement. If you would like to contribute (fixes or features), please feel free to clone and add your updates!  I would love to see what features we can add.
 
 ### Version History
-1.0 13-Apr-2018 Initial Upload.
+2.5 16-Oct-2020 Added feature to create constants file(s)
+
+2.1 27-Apr-2020 Fixed Singleton code in the Awake method
 
 2.0 16-Dec-2019 Added Editor scripts for easier use.
 
-2.1 27-Apr-2020 Fixed Singleton code in the Awake method
+1.0 13-Apr-2018 Initial Upload.
