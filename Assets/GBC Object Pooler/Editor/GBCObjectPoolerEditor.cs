@@ -111,8 +111,8 @@ public class GBCObjectPoolerEditor : Editor
     private void CreateConstants() {
         string currentSceneName = SceneManager.GetActiveScene().name.Replace(" ", String.Empty);
         string headerFileLocation = Directory.GetCurrentDirectory() + "\\Assets\\GBC Object Pooler\\Editor\\Templates\\header.txt";
-        string constantsFileName = "GBCOP_" + currentSceneName + "_Constants.cs";
-        string generatedFileLocationRelativePath = "Assets\\GBC Object Pooler\\Generated\\";
+        string constantsFileName = "GBCPool_" + currentSceneName + "_Constants.cs";
+        string generatedFileLocationRelativePath = "Assets\\GBC Object Pooler\\Constants\\";
         string generatedFileLocationFullPath = Directory.GetCurrentDirectory() + "\\" + generatedFileLocationRelativePath;
         string constantsFileNameRelativePath = generatedFileLocationRelativePath + constantsFileName;
         string constantsFileNameFullPath = Directory.GetCurrentDirectory() + "\\" + generatedFileLocationRelativePath + constantsFileName;
@@ -132,13 +132,14 @@ public class GBCObjectPoolerEditor : Editor
             sw.Write(headerText + "\n\n");
             sw.WriteLine("namespace GBCObjectPooler");
             sw.WriteLine("{");
-            sw.WriteLine("\tpublic static class GBCOP_" + currentSceneName + "_Constants");
+            sw.WriteLine("\tpublic static class GBCPool_" + currentSceneName + "_Constants");
             sw.WriteLine("\t{");
 
             for (int i = 0; i < listSize; i++) {
                 SerializedProperty MyListRef = poolList.GetArrayElementAtIndex(i);
                 string poolName = MyListRef.FindPropertyRelative("PoolName").stringValue;
-                sw.WriteLine("\t\tpublic static string GBOC_" + currentSceneName + "_" + poolName + "= \"" + poolName + "\";");
+                //sw.WriteLine("\t\tpublic static string GBCPool_" + currentSceneName + "_" + poolName + "= \"" + poolName + "\";");
+                sw.WriteLine("\t\tpublic static string " + poolName + " = \"" + poolName + "\";");
             }
 
             sw.WriteLine("\t}\n}");

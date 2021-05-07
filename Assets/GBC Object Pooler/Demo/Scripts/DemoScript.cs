@@ -22,8 +22,8 @@ public class DemoScript : MonoBehaviour {
     public Text SpheresText;
 
     private void Start() {
-        CubesText.text = "Cubes In Pool: " + Pooler.Instance.ItemsInPool(GBCOP_DemoScene_Constants.GBOC_DemoScene_Cube);
-        SpheresText.text = "Spheres In Pool: " + Pooler.Instance.ItemsInPool(GBCOP_DemoScene_Constants.GBOC_DemoScene_Sphere);
+        CubesText.text = "Cubes In Pool: " + Pooler.Instance.ItemsInPool(GBCPool_DemoScene_Constants.Cube);
+        SpheresText.text = "Spheres In Pool: " + Pooler.Instance.ItemsInPool(GBCPool_DemoScene_Constants.Sphere);
     }
 
     // Use this for initialization
@@ -35,22 +35,22 @@ public class DemoScript : MonoBehaviour {
             RaycastHit hitInfo;
 
             if (Physics.Raycast(ray, out hitInfo)) {
-                if (hitInfo.collider.name.Equals(GBCOP_DemoScene_Constants.GBOC_DemoScene_Cube)) {
-                    Pooler.Instance.ReturnToPool(hitInfo.collider.gameObject, GBCOP_DemoScene_Constants.GBOC_DemoScene_Cube);
+                if (hitInfo.collider.name.Equals(GBCPool_DemoScene_Constants.Cube)) {
+                    Pooler.Instance.ReturnToPool(hitInfo.collider.gameObject, GBCPool_DemoScene_Constants.Cube);
                 }
             }
             else {
-                GameObject go = Pooler.Instance.GetPooledObject(GBCOP_DemoScene_Constants.GBOC_DemoScene_Cube);
+                GameObject go = Pooler.Instance.GetPooledObject(GBCPool_DemoScene_Constants.Cube);
                 if (go != null) {
                     go.transform.position = new Vector3(pos.x, pos.y, Random.Range(0f, -1f));
                     go.SetActive(true);
                 }
             }
 
-            Debug.Log("Cubes Left in Pool: " + Pooler.Instance.ItemsInPool(GBCOP_DemoScene_Constants.GBOC_DemoScene_Cube) +
-                "     Spheres Left in Pool: " + Pooler.Instance.ItemsInPool(GBCOP_DemoScene_Constants.GBOC_DemoScene_Sphere));
+            Debug.Log("Cubes Left in Pool: " + Pooler.Instance.ItemsInPool(GBCPool_DemoScene_Constants.Cube) +
+                "     Spheres Left in Pool: " + Pooler.Instance.ItemsInPool(GBCPool_DemoScene_Constants.Sphere));
 
-            CubesText.text = "Cubes In Pool: " + Pooler.Instance.ItemsInPool(GBCOP_DemoScene_Constants.GBOC_DemoScene_Cube);
+            CubesText.text = "Cubes In Pool: " + Pooler.Instance.ItemsInPool(GBCPool_DemoScene_Constants.Cube);
         }
 
         if (Input.GetMouseButtonUp(1)) {
@@ -60,22 +60,22 @@ public class DemoScript : MonoBehaviour {
             RaycastHit hitInfo;
 
             if (Physics.Raycast(ray, out hitInfo)) {
-                if (hitInfo.collider.name.Equals(GBCOP_DemoScene_Constants.GBOC_DemoScene_Sphere)) {
-                    Pooler.Instance.ReturnToPool(hitInfo.collider.gameObject, GBCOP_DemoScene_Constants.GBOC_DemoScene_Sphere);
+                if (hitInfo.collider.name.Equals(GBCPool_DemoScene_Constants.Sphere)) {
+                    Pooler.Instance.ReturnToPool(hitInfo.collider.gameObject, GBCPool_DemoScene_Constants.Sphere);
                 }
             }
             else {
-                GameObject go = Pooler.Instance.GetPooledObject(GBCOP_DemoScene_Constants.GBOC_DemoScene_Sphere);
+                GameObject go = Pooler.Instance.GetPooledObject(GBCPool_DemoScene_Constants.Sphere);
                 if (go != null) {
                     go.transform.position = new Vector3(pos.x, pos.y, Random.Range(0f, -1f));
                     go.SetActive(true);
                 }
             }
 
-            Debug.Log("Cubes Left in Pool: " + Pooler.Instance.ItemsInPool(GBCOP_DemoScene_Constants.GBOC_DemoScene_Cube) +
-                "     Spheres Left in Pool: " + Pooler.Instance.ItemsInPool(GBCOP_DemoScene_Constants.GBOC_DemoScene_Sphere));
+            Debug.Log("Cubes Left in Pool: " + Pooler.Instance.ItemsInPool(GBCPool_DemoScene_Constants.Cube) +
+                "     Spheres Left in Pool: " + Pooler.Instance.ItemsInPool(GBCPool_DemoScene_Constants.Sphere));
 
-            SpheresText.text = "Spheres In Pool: " + Pooler.Instance.ItemsInPool(GBCOP_DemoScene_Constants.GBOC_DemoScene_Sphere);
+            SpheresText.text = "Spheres In Pool: " + Pooler.Instance.ItemsInPool(GBCPool_DemoScene_Constants.Sphere);
         }
     }
 }
