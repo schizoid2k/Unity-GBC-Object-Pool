@@ -46,6 +46,8 @@ If the pool does not exist, *null* is returned.
 I am adding features as I need them for my personal projects. Developing Unity Editor plugins is somewhat new to me, so I am sure there is room for improvement. If you would like to contribute (fixes or features), please feel free to clone this project and add your updates!  I would love to see what features we can add.
 
 ### Version History
+2.6 11-Apr-2023 Fixed bug when creating constants using pool with a space in the name.
+
 2.5 07-May-2021 Added feature to create constants file(s)
 
 2.1 27-Apr-2020 Fixed Singleton code in the Awake method
