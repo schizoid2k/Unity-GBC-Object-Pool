@@ -139,7 +139,7 @@ public class GBCObjectPoolerEditor : Editor
                 SerializedProperty MyListRef = poolList.GetArrayElementAtIndex(i);
                 string poolName = MyListRef.FindPropertyRelative("PoolName").stringValue;
                 //sw.WriteLine("\t\tpublic static string GBCPool_" + currentSceneName + "_" + poolName + "= \"" + poolName + "\";");
-                sw.WriteLine("\t\tpublic static string " + poolName + " = \"" + poolName + "\";");
+                sw.WriteLine("\t\tpublic static string " + poolName.Replace(" ", String.Empty) + " = \"" + poolName + "\";");
             }
 
             sw.WriteLine("\t}\n}");
